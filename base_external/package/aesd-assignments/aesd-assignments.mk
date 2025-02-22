@@ -6,13 +6,14 @@
 ##############################################################
 
 #TODO: Fill up the contents below in order to reference your assignment 3 git contents
-AESD_ASSIGNMENTS_VERSION = 1740229470fce37872f78194e915f27ae47c8a66
+AESD_ASSIGNMENTS_VERSION = 2ab9d4e8da3bc9b47251509037688b3cd3390a83
 # Note: Be sure to reference the *ssh* repository URL here (not https) to work properly
 # with ssh keys and the automated build/test system.
 # Your site should start with git@github.com:
-AESD_ASSIGNMENTS_SITE = git@github.com:cu-ecen-aeld/assignments-3-and-later-wlbe4.git
+AESD_ASSIGNMENTS_SITE = git@github.com:cu-ecen-aeld/assignments-3-and-later-wlbe4.git;main
 AESD_ASSIGNMENTS_SITE_METHOD = git
 AESD_ASSIGNMENTS_GIT_SUBMODULES = YES
+AESD_ASSIGNMENTS_MODULE_SUBDIRS = aesd-char-driver
 
 define AESD_ASSIGNMENTS_BUILD_CMDS
 	$(MAKE) $(TARGET_CONFIGURE_OPTS) -C $(@D)/server all
@@ -22,6 +23,10 @@ endef
 define AESD_ASSIGNMENTS_INSTALL_TARGET_CMDS
     $(INSTALL) -m 0755 $(@D)/server/aesdsocket $(TARGET_DIR)/usr/bin
     $(INSTALL) -m 0755 $(@D)/server/aesdsocket-start-stop $(TARGET_DIR)/etc/init.d/S99aesdsocket
+	$(INSTALL) -d 0755 $(TARGET_DIR)/lib/modules/$(LINUX_VERSION)/extra
+	$(INSTALL) -m 0755 $(@D)/aesd-char-driver/aesdchar_load $(TARGET_DIR)/lib/modules/$(LINUX_VERSION)/extra/
+	$(INSTALL) -m 0755 $(@D)/aesd-char-driver/aesdchar_unload $(TARGET_DIR)/lib/modules/$(LINUX_VERSION)/extra/
 endef
 
+$(eval $(kernel-module))
 $(eval $(generic-package))
