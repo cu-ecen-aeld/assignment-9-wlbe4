@@ -10,7 +10,7 @@ AESD_ASSIGNMENTS_VERSION = 046fe8a1bd900749183f67b88d0531a9048fe03a
 # Note: Be sure to reference the *ssh* repository URL here (not https) to work properly
 # with ssh keys and the automated build/test system.
 # Your site should start with git@github.com:
-AESD_ASSIGNMENTS_SITE = git@github.com:cu-ecen-aeld/assignments-3-and-later-wlbe4.git;main
+AESD_ASSIGNMENTS_SITE = git@github.com:cu-ecen-aeld/assignments-3-and-later-wlbe4.git
 AESD_ASSIGNMENTS_SITE_METHOD = git
 AESD_ASSIGNMENTS_GIT_SUBMODULES = YES
 AESD_ASSIGNMENTS_MODULE_SUBDIRS = aesd-char-driver
